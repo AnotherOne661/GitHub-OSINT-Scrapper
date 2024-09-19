@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://github.com/{}"
 
+final_array = []
+
 
 # Function to separate
 def separator():
@@ -30,6 +32,9 @@ def usr_info(username):
 
 def get_repos(username):
     follower_repo_url = BASE_URL.format(username) + "?tab=repositories"
+    
+    repo_array = []
+    
 
     repos_response = requests.get(follower_repo_url)
     if not repos_response.ok:
@@ -47,6 +52,11 @@ def get_repos(username):
         print("Public repositories: ")
         print(repo.text.strip())
         separator()
+        
+        repo_array.append(repo.text.strip())
+        final_array.append(repo.text.strip())
+    
+
 
 
 def followers(username):
@@ -80,25 +90,57 @@ def followers(username):
 
         separator()
 
+        followers_array.append(follower.text.strip())
+        final_array.append(follower.text.strip())
+        
         get_repos(follower_username)
 
-        followers_array.append(follower.text)
+        
 
-    writefile("".join(followers_array))
-# TODO: Finish the writing to also write the repos. IN THE SAME FILE
+   # writefile("".join(followers_array), "Users")
 
-def writefile(cont):
-    with open("scrapped_files", "w", encoding="utf-8") as f:
+
+def writefile(cont, name):
+    with open(name, "w", encoding="utf-8") as f:
         f.write(cont)
+        
+
+
+def menu():
+    
+    flag = False
+    ans = 0
+    
+    while not flag:
+        print("Please, select the option you want to run")    
+        print("1. Enter username to search repository information")
+        print("2. Enter username to search information about the target")
+        print("3. To leave")
+        ans = int(input("Select your answer: "))
+        match ans:
+            case 1:
+                username = input("Introduce the victim's username: ")
+                usr_info(username)
+                followers(username)
+                filename = input("If you want to save this into a file, give it a name, if you don't, press Enter")
+                if filename:
+                    writefile("\n".join(final_array),filename)
+                input("Press enter to continue")
+            case 2:
+                print("ta")
+                input("Press enter to continue")
+            case 3:
+                print("See you soon")
+                flag = True
+            case _:
+                print("An unrecognised option was given, please, select a valid one")
+                menu()
 
 
 def main():
-    username = input("Introduce the victim's username: ")
-    usr_info(username)
-    followers(username)
+   menu()
+    # writefile()
 
 
 if __name__ == "__main__":
     main()
-
-
