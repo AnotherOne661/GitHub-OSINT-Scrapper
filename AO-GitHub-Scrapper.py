@@ -85,7 +85,7 @@ def followers(username):
         followers_array.append(follower.text)
 
     writefile("".join(followers_array))
-# TODO: Finish the writing to also write the repos
+# TODO: Finish the writing to also write the repos. IN THE SAME FILE
 
 def writefile(cont):
     with open("scrapped_files", "w", encoding="utf-8") as f:
