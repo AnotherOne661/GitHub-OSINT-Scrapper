@@ -1,2 +1,1 @@
-# GitHub-OSINT-Scrapper
-Small project done on a whim as a joke with my friend
+# The "how to" is very easy. Clone the repo, run it with Python, enter the GitHub username of the target
