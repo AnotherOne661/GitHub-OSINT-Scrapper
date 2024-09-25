@@ -97,10 +97,10 @@ def followers(username):
 
         
 
-   # writefile("".join(followers_array), "Users")
 
 
 def writefile(cont, name):
+    
     with open(name, "w", encoding="utf-8") as f:
         f.write(cont)
         
@@ -122,9 +122,9 @@ def menu():
                 username = input("Introduce the victim's username: ")
                 usr_info(username)
                 followers(username)
-                filename = input("If you want to save this into a file, give it a name, if you don't, press Enter")
+                filename = input("If you want to save this into a file, give it a name, if you don't, press Enter: ")
                 if filename:
-                    writefile("\n".join(final_array),filename)
+                    writefile("\n".join(final_array),filename+".txt")
                 input("Press enter to continue")
             case 2:
                 print("ta")
@@ -139,8 +139,10 @@ def menu():
 
 def main():
    menu()
-    # writefile()
+
 
 
 if __name__ == "__main__":
     main()
+
+#TODO: Sherlock integration in option 2, refractor the code to add each user as a class
