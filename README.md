@@ -5,5 +5,5 @@
 ### The "how to" is very easy. Clone the repo, run it with Python, enter the GitHub username of the target
 
 ## Future updates:
-- [ ] Sherlock integration
+- [ ✔️ ] Sherlock integration
 - [ ] Refactor code, as I keep learning
